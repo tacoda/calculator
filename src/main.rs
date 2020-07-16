@@ -40,6 +40,12 @@ enum Calculator {
         base: usize,
         exponent: usize,
     },
+    #[structopt(name = "percent")]
+    /// Compute a percentage of a value
+    Percent {
+        base: i32,
+        percent: f64,
+    },
     #[structopt(name = "mean")]
     /// Find the mean of a list of numbers
     Mean {
@@ -71,6 +77,7 @@ fn main() {
         Calculator::Sub { first, second } => { calc::arithmetic::sub(first, second) },
         Calculator::Mult { nums } => { calc::arithmetic::mult(&nums) },
         Calculator::Div { dividend, divisor } => { calc::arithmetic::div(dividend, divisor) },
+        Calculator::Percent { base, percent } => { calc::arithmetic::prcnt(base, percent) },
         Calculator::Exp { base, exponent } => { calc::arithmetic::exp(base, exponent) },
         Calculator::Mean { nums } => { calc::statistics::mean(&nums) },
         Calculator::Median { mut nums } => {

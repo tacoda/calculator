@@ -37,3 +37,11 @@ pub fn exp(base: usize, exponent: usize) {
 fn exponential(base: usize, exponent: usize) -> usize {
     base.pow(exponent as u32)
 }
+
+pub fn prcnt(base: i32, percent: f64) {
+    println!("{}", percentage(base as f64, percent));
+}
+
+fn percentage(base: f64, percent: f64) -> f64 {
+    base * (percent / 100.0)
+}
