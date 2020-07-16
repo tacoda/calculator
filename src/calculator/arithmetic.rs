@@ -1,31 +1,39 @@
-pub fn add(first: usize, second: usize) {
-    println!("{} + {} = {}", first, second, addition(first, second));
+pub fn add(nums: Vec<usize>) {
+    println!("{}", addition(nums));
 }
 
-fn addition(first: usize, second: usize) -> usize {
-    first + second
+fn addition(nums: Vec<usize>) -> usize {
+    nums.iter().fold(0, |acc, n| acc + n)
 }
 
 pub fn sub(first: usize, second: usize) {
-    println!("{} - {} = {}", first, second, subtract(first, second));
+    println!("{}", subtract(first, second));
 }
 
 fn subtract(first: usize, second: usize) -> usize {
     first - second
 }
 
-pub fn mult(first: usize, second: usize) {
-    println!("{} * {} = {}", first, second, multiply(first, second));
+pub fn mult(nums: Vec<usize>) {
+    println!("{}", multiply(nums));
 }
 
-fn multiply(first: usize, second: usize) -> usize {
-    first * second
+fn multiply(nums: Vec<usize>) -> usize {
+    nums.iter().fold(0, |acc, n| acc * n)
 }
 
-pub fn div(first: usize, second: usize) {
-    println!("{} / {} = {}", first, second, divide(first, second));
+pub fn div(dividend: usize, divisor: usize) {
+    println!("{}", divide(dividend, divisor));
 }
 
-fn divide(first: usize, second: usize) -> usize {
-    first / second
+fn divide(dividend: usize, divisor: usize) -> usize {
+    dividend / divisor
+}
+
+pub fn exp(base: usize, exponent: usize) {
+    println!("{}", exponential(base, exponent));
+}
+
+fn exponential(base: usize, exponent: usize) -> usize {
+    base.pow(exponent as u32)
 }

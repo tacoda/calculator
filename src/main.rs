@@ -11,10 +11,11 @@ use crate::calculator as calc;
 #[structopt(name = "calculator", about = "A simple command line calculator")]
 enum Calculator {
     #[structopt(name = "add")]
-    /// Add two numbers
+    /// Add a list of at least two numbers
     Add {
-        first: usize,
-        second: usize,
+        #[structopt(required = true, min_values = 2)]
+        /// Numbers to add
+        nums: Vec<usize>,
     },
     #[structopt(name = "sub")]
     /// Subtract two numbers
@@ -23,16 +24,23 @@ enum Calculator {
         second: usize,
     },
     #[structopt(name = "mult")]
-    /// Multiply two numbers
+    /// Multiply a list of at least two numbers
     Mult {
-        first: usize,
-        second: usize,
+        #[structopt(required = true, min_values = 2)]
+        /// Numbers to multiply
+        nums: Vec<usize>,
     },
     #[structopt(name = "div")]
     /// Divide two numbers
     Div {
-        first: usize,
-        second: usize,
+        dividend: usize,
+        divisor: usize,
+    },
+    #[structopt(name = "exp")]
+    /// Find the power of a base and exponent
+    Exp {
+        base: usize,
+        exponent: usize,
     }
 }
 
@@ -40,9 +48,10 @@ fn main() {
     let calculator = Calculator::from_args();
 
     match calculator {
-        Calculator::Add { first, second } => { calc::arithmetic::add(first, second) },
+        Calculator::Add { nums } => { calc::arithmetic::add(nums) },
         Calculator::Sub { first, second } => { calc::arithmetic::sub(first, second) },
-        Calculator::Mult { first, second } => { calc::arithmetic::mult(first, second) },
-        Calculator::Div { first, second } => { calc::arithmetic::div(first, second) },
+        Calculator::Mult { nums } => { calc::arithmetic::mult(nums) },
+        Calculator::Div { dividend, divisor } => { calc::arithmetic::div(dividend, divisor) },
+        Calculator::Exp { base, exponent } => { calc::arithmetic::exp(base, exponent) },
     }
 }
