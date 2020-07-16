@@ -21,6 +21,12 @@ enum Calculator {
     Sub {
         first: usize,
         second: usize,
+    },
+    #[structopt(name = "mult")]
+    /// Multiply two numbers
+    Mult {
+        first: usize,
+        second: usize,
     }
 }
 
@@ -28,7 +34,8 @@ fn main() {
     let calculator = Calculator::from_args();
 
     match calculator {
-        Calculator::Add { first, second } => { println!("{}", calc::add::add(first, second)) },
-        Calculator::Sub { first, second } => { println!("{}", calc::sub::sub(first, second)) },
+        Calculator::Add { first, second } => { println!("{} + {} = {}", first, second, calc::add::add(first, second)) },
+        Calculator::Sub { first, second } => { println!("{} - {} = {}", first, second, calc::sub::sub(first, second)) },
+        Calculator::Mult { first, second } => { println!("{} * {} = {}", first, second, calc::mult::mult(first, second)) },
     }
 }
