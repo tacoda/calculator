@@ -11,11 +11,13 @@ use crate::calculator as calc;
 #[structopt(name = "calculator", about = "A simple command line calculator")]
 enum Calculator {
     #[structopt(name = "add")]
+    /// Add two numbers
     Add {
         first: usize,
         second: usize,
     },
     #[structopt(name = "sub")]
+    /// Subtract two numbers
     Sub {
         first: usize,
         second: usize,
