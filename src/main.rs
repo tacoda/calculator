@@ -14,6 +14,11 @@ enum Calculator {
     Add {
         first: usize,
         second: usize,
+    },
+    #[structopt(name = "sub")]
+    Sub {
+        first: usize,
+        second: usize,
     }
 }
 
@@ -22,5 +27,6 @@ fn main() {
 
     match calculator {
         Calculator::Add { first, second } => { println!("{}", calc::add::add(first, second)) },
+        Calculator::Sub { first, second } => { println!("{}", calc::sub::sub(first, second)) },
     }
 }
