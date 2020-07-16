@@ -3,7 +3,6 @@ extern crate structopt;
 
 mod calculator;
 
-
 use structopt::StructOpt;
 use crate::calculator as calc;
 
@@ -15,7 +14,7 @@ enum Calculator {
     Add {
         #[structopt(required = true, min_values = 2)]
         /// Numbers to add
-        nums: Vec<usize>,
+        nums: Vec<i32>,
     },
     #[structopt(name = "sub")]
     /// Subtract two numbers
@@ -28,7 +27,7 @@ enum Calculator {
     Mult {
         #[structopt(required = true, min_values = 2)]
         /// Numbers to multiply
-        nums: Vec<usize>,
+        nums: Vec<i32>,
     },
     #[structopt(name = "div")]
     /// Divide two numbers
@@ -43,9 +42,24 @@ enum Calculator {
         exponent: usize,
     },
     #[structopt(name = "mean")]
+    /// Find the mean of a list of numbers
     Mean {
         #[structopt(required = true, min_values = 2)]
         /// Numbers to compute the mean of
+        nums: Vec<i32>,
+    },
+    #[structopt(name = "median")]
+    /// Find the median of a list of numbers
+    Median {
+        #[structopt(required = true, min_values = 2)]
+        /// Numbers to compute the median of
+        nums: Vec<i32>,
+    },
+    #[structopt(name = "mode")]
+    /// Find the mode of a list of numbers
+    Mode {
+        #[structopt(required = true, min_values = 2)]
+        /// Numbers to compute the mode of
         nums: Vec<i32>,
     }
 }
@@ -54,11 +68,13 @@ fn main() {
     let calculator = Calculator::from_args();
 
     match calculator {
-        Calculator::Add { nums } => { calc::arithmetic::add(nums) },
+        Calculator::Add { nums } => { calc::arithmetic::add(&nums) },
         Calculator::Sub { first, second } => { calc::arithmetic::sub(first, second) },
-        Calculator::Mult { nums } => { calc::arithmetic::mult(nums) },
+        Calculator::Mult { nums } => { calc::arithmetic::mult(&nums) },
         Calculator::Div { dividend, divisor } => { calc::arithmetic::div(dividend, divisor) },
         Calculator::Exp { base, exponent } => { calc::arithmetic::exp(base, exponent) },
         Calculator::Mean { nums } => { calc::statistics::mean(&nums) },
+        Calculator::Median { nums } => { calc::statistics::median(&nums) },
+        Calculator::Mode { nums } => { calc::statistics::mode(&nums) },
     }
 }

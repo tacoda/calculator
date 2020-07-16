@@ -1,8 +1,8 @@
-pub fn add(nums: Vec<usize>) {
+pub fn add(nums: &[i32]) {
     println!("{}", addition(nums));
 }
 
-fn addition(nums: Vec<usize>) -> usize {
+pub fn addition(nums: &[i32]) -> i32 {
     nums.iter().fold(0, |acc, n| acc + n)
 }
 
@@ -14,12 +14,12 @@ fn subtract(first: usize, second: usize) -> usize {
     first - second
 }
 
-pub fn mult(nums: Vec<usize>) {
+pub fn mult(nums: &[i32]) {
     println!("{}", multiply(nums));
 }
 
-fn multiply(nums: Vec<usize>) -> usize {
-    nums.iter().fold(0, |acc, n| acc * n)
+fn multiply(nums: &[i32]) -> i32 {
+    nums.iter().fold(1, |acc, n| acc * n)
 }
 
 pub fn div(dividend: usize, divisor: usize) {
