@@ -13,7 +13,7 @@ enum Calculator {
     Add {
         #[structopt(required = true, min_values = 2)]
         /// Numbers to add
-        nums: Vec<i32>,
+        nums: Vec<f64>,
     },
     #[structopt(name = "sub")]
     /// Subtract two numbers
@@ -51,7 +51,7 @@ enum Calculator {
     Mean {
         #[structopt(required = true, min_values = 2)]
         /// Numbers to compute the mean of
-        nums: Vec<i32>,
+        nums: Vec<f64>,
     },
     #[structopt(name = "median")]
     /// Find the median of a list of numbers
@@ -66,8 +66,32 @@ enum Calculator {
         #[structopt(required = true, min_values = 2)]
         /// Numbers to compute the mode of
         nums: Vec<i32>,
+    },
+    #[structopt(name = "abs")]
+    /// Find the absolute value of a number
+    AbsoluteValue {
+        /// Number to compute the square of
+        num: f64,
+    },
+    #[structopt(name = "square")]
+    /// Find the square of a number
+    Square {
+        /// Number to compute the square of
+        num: f64,
+    },
+    #[structopt(name = "sqrt")]
+    /// Find the square root of a number
+    SquareRoot {
+        /// Number to compute the square root of
+        num: f64,
     }
 }
+
+// Interactive mode?
+// Polish notation?
+// Parens, AC, memory, swap sign, square, root, cube, cube root,
+// nth power, nth root, e exponent, ln, base 10 exponent, log(10),
+// factorial, sin, cos, tan, EE, rad/deg, pi, rand
 
 fn main() {
     let calculator = Calculator::from_args();
@@ -85,5 +109,8 @@ fn main() {
             calc::statistics::median(&nums)
         },
         Calculator::Mode { nums } => { calc::statistics::mode(&nums) },
+        Calculator::AbsoluteValue { num } => { calc::functions::abs(num) },
+        Calculator::Square { num } => { calc::functions::square(num) },
+        Calculator::SquareRoot { num } => { calc::functions::sqrt(num) },
     }
 }

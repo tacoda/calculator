@@ -1,13 +1,13 @@
 use std::collections::HashMap;
 use crate::calculator::arithmetic;
 
-pub fn mean(nums: &[i32]) {
+pub fn mean(nums: &[f64]) {
     println!("{}", mean_average(nums));
 }
 
-fn mean_average(nums: &[i32]) -> f64 {
-    let sum: i32 = arithmetic::addition(nums);
-    f64::from(sum) / (nums.len() as f64)
+fn mean_average(nums: &[f64]) -> f64 {
+    let sum = arithmetic::addition(nums);
+    sum / (nums.len() as f64)
 }
 
 pub fn median(nums: &[i32]) {
@@ -18,7 +18,7 @@ fn median_average(nums: &[i32]) -> f64 {
     let len = nums.len();
     let mid = len / 2;
     if len % 2 == 0 {
-        mean_average(&nums[(mid - 1)..(mid + 1)])
+        mean_average(&nums.into_iter().map(|n| *n as f64).collect::<Vec<f64>>()[(mid - 1)..(mid + 1)])
     } else {
         f64::from(nums[mid])
     }

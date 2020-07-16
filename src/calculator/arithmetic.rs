@@ -1,9 +1,9 @@
-pub fn add(nums: &[i32]) {
+pub fn add(nums: &[f64]) {
     println!("{}", addition(nums));
 }
 
-pub fn addition(nums: &[i32]) -> i32 {
-    nums.iter().fold(0, |acc, n| acc + n)
+pub fn addition(nums: &[f64]) -> f64 {
+    nums.iter().fold(0.0, |acc, n| acc + n)
 }
 
 pub fn sub(first: usize, second: usize) {
