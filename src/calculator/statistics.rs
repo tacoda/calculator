@@ -30,18 +30,14 @@ pub fn mode(nums: &[i32]) {
 
 fn mode_average(nums: &[i32]) -> i32 {
     let mut occurrences: HashMap<&i32, i32> = HashMap::new();
-    let mut max: (i32, i32) = (0, 0);
 
     for entry in nums {
-        let count = occurrences.entry(entry).or_insert(0);
-        *count += 1;
+        *occurrences.entry(entry).or_insert(0) += 1;
     }
 
-    for (&&key, &val) in &occurrences {
-        if val > max.1 {
-            max = (key, val);
-        }
-    }
-
-    max.0
+    *occurrences
+        .into_iter()
+        .max_by_key(|&(_, count)| count)
+        .unwrap()
+        .0
 }

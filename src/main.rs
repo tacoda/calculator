@@ -74,7 +74,10 @@ fn main() {
         Calculator::Div { dividend, divisor } => { calc::arithmetic::div(dividend, divisor) },
         Calculator::Exp { base, exponent } => { calc::arithmetic::exp(base, exponent) },
         Calculator::Mean { nums } => { calc::statistics::mean(&nums) },
-        Calculator::Median { nums } => { calc::statistics::median(&nums) },
+        Calculator::Median { mut nums } => {
+            nums.sort();
+            calc::statistics::median(&nums)
+        },
         Calculator::Mode { nums } => { calc::statistics::mode(&nums) },
     }
 }
