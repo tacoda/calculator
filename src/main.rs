@@ -41,6 +41,12 @@ enum Calculator {
     Exp {
         base: usize,
         exponent: usize,
+    },
+    #[structopt(name = "mean")]
+    Mean {
+        #[structopt(required = true, min_values = 2)]
+        /// Numbers to compute the mean of
+        nums: Vec<i32>,
     }
 }
 
@@ -53,5 +59,6 @@ fn main() {
         Calculator::Mult { nums } => { calc::arithmetic::mult(nums) },
         Calculator::Div { dividend, divisor } => { calc::arithmetic::div(dividend, divisor) },
         Calculator::Exp { base, exponent } => { calc::arithmetic::exp(base, exponent) },
+        Calculator::Mean { nums } => { calc::statistics::mean(&nums) },
     }
 }
