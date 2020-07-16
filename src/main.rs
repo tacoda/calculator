@@ -27,6 +27,12 @@ enum Calculator {
     Mult {
         first: usize,
         second: usize,
+    },
+    #[structopt(name = "div")]
+    /// Divide two numbers
+    Div {
+        first: usize,
+        second: usize,
     }
 }
 
@@ -37,5 +43,6 @@ fn main() {
         Calculator::Add { first, second } => { println!("{} + {} = {}", first, second, calc::add::add(first, second)) },
         Calculator::Sub { first, second } => { println!("{} - {} = {}", first, second, calc::sub::sub(first, second)) },
         Calculator::Mult { first, second } => { println!("{} * {} = {}", first, second, calc::mult::mult(first, second)) },
+        Calculator::Div { first, second } => { println!("{} / {} = {}", first, second, calc::div::div(first, second)) },
     }
 }
