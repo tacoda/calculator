@@ -1,5 +1,5 @@
-pub fn add(nums: &[f64]) {
-    println!("{}", addition(nums));
+pub fn add(nums: &[f64]) -> f64 {
+    nums.iter().fold(0.0, |acc, n| acc + n)
 }
 
 pub fn addition(nums: &[f64]) -> f64 {
