@@ -109,6 +109,24 @@ enum Calculator {
         /// Number to compute the natural logarithm of
         num: f64,
     },
+    #[structopt(name = "sin")]
+    /// Find the sine of a number
+    Sin {
+        /// Number to compute the sine of (in radians)
+        num: f64,
+    },
+    #[structopt(name = "cos")]
+    /// Find the cosine of a number
+    Cos {
+        /// Number to compute the cosine of (in radians)
+        num: f64,
+    },
+    #[structopt(name = "tan")]
+    /// Find the tangent of a number
+    Tan {
+        /// Number to compute the tangent of (in radians)
+        num: f64,
+    },
 }
 
 // Parens, AC, memory, swap sign, square, root, cube, cube root,
@@ -138,6 +156,9 @@ fn main() {
         Calculator::CubeRoot { num } => { calc::functions::cbrt(num) },
         Calculator::Exp { num } => { calc::functions::exp(num) },
         Calculator::Ln { num } => { calc::functions::ln(num) },
+        Calculator::Sin { num } => { calc::functions::sin(num) },
+        Calculator::Cos { num } => { calc::functions::cos(num) },
+        Calculator::Tan { num } => { calc::functions::tan(num) },
     };
 
     println!("{}", result);

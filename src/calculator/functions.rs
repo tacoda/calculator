@@ -27,3 +27,16 @@ pub fn exp(num: f64) -> f64 {
 pub fn ln(num: f64) -> f64 {
     num.ln()
 }
+
+pub fn sin(num: f64) -> f64 {
+    num.sin()
+}
+
+pub fn cos(num: f64) -> f64 {
+    num.cos()
+}
+
+pub fn tan(num: f64) -> f64 {
+    num.tan()
+}
+
