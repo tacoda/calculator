@@ -34,9 +34,9 @@ enum Calculator {
         dividend: f64,
         divisor: f64,
     },
-    #[structopt(name = "exp")]
+    #[structopt(name = "pow")]
     /// Find the power of a base and exponent
-    Exp {
+    Pow {
         base: f64,
         exponent: i32,
     },
@@ -91,6 +91,24 @@ enum Calculator {
         /// Number to compute the cube of
         num: f64,
     },
+    #[structopt(name = "cbrt")]
+    /// Find the cube root of a number
+    CubeRoot {
+        /// Number to compute the cube root of
+        num: f64,
+    },
+    #[structopt(name = "exp")]
+    /// Find the value of the exp function of a number
+    Exp {
+        /// Number to compute the exp function of
+        num: f64,
+    },
+    #[structopt(name = "ln")]
+    /// Find the natural logarithm of a number
+    Ln {
+        /// Number to compute the natural logarithm of
+        num: f64,
+    },
 }
 
 // Parens, AC, memory, swap sign, square, root, cube, cube root,
@@ -98,14 +116,14 @@ enum Calculator {
 // factorial, sin, cos, tan, EE, rad/deg, pi, e, rand
 
 fn main() {
-    let command = Calculator::from_args();
+    let cli = Calculator::from_args();
 
-    let result = match command {
+    let result = match cli {
         Calculator::Add { nums } => { calc::arithmetic::add(&nums) },
         Calculator::Sub { first, second } => { calc::arithmetic::sub(first, second) },
         Calculator::Mult { nums } => { calc::arithmetic::mult(&nums) },
         Calculator::Div { dividend, divisor } => { calc::arithmetic::div(dividend, divisor) },
-        Calculator::Exp { base, exponent } => { calc::arithmetic::exp(base, exponent) },
+        Calculator::Pow { base, exponent } => { calc::arithmetic::pow(base, exponent) },
         Calculator::Percent { base, percent } => { calc::arithmetic::percent(base, percent) },
         Calculator::Mean { nums } => { calc::statistics::mean(&nums) },
         Calculator::Median { mut nums } => {
@@ -117,6 +135,9 @@ fn main() {
         Calculator::Square { num } => { calc::functions::square(num) },
         Calculator::SquareRoot { num } => { calc::functions::sqrt(num) },
         Calculator::Cube { num } => { calc::functions::cube(num) },
+        Calculator::CubeRoot { num } => { calc::functions::cbrt(num) },
+        Calculator::Exp { num } => { calc::functions::exp(num) },
+        Calculator::Ln { num } => { calc::functions::ln(num) },
     };
 
     println!("{}", result);

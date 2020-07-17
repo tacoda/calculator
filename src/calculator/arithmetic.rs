@@ -14,7 +14,7 @@ pub fn div(dividend: f64, divisor: f64) -> f64 {
     dividend / divisor
 }
 
-pub fn exp(base: f64, exponent: i32) -> f64 {
+pub fn pow(base: f64, exponent: i32) -> f64 {
     base.powi(exponent)
 }
 
