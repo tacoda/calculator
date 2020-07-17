@@ -40,3 +40,8 @@ pub fn tan(num: f64) -> f64 {
     num.tan()
 }
 
+pub fn fact(num: u32) -> f64 {
+    let sequence = (1..=num).into_iter().map(|n| n as f64).collect::<Vec<f64>>();
+    arithmetic::mult(&sequence)
+}
+

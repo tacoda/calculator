@@ -127,6 +127,12 @@ enum Calculator {
         /// Number to compute the tangent of (in radians)
         num: f64,
     },
+    #[structopt(name = "fact")]
+    /// Find the factorial of a number
+    Fact {
+        /// Number to compute the factorial of
+        num: u32,
+    },
 }
 
 // Parens, AC, memory, swap sign, square, root, cube, cube root,
@@ -159,6 +165,7 @@ fn main() {
         Calculator::Sin { num } => { calc::functions::sin(num) },
         Calculator::Cos { num } => { calc::functions::cos(num) },
         Calculator::Tan { num } => { calc::functions::tan(num) },
+        Calculator::Fact { num } => { calc::functions::fact(num) },
     };
 
     println!("{}", result);
