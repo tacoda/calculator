@@ -2,46 +2,22 @@ pub fn add(nums: &[f64]) -> f64 {
     nums.iter().fold(0.0, |acc, n| acc + n)
 }
 
-pub fn addition(nums: &[f64]) -> f64 {
-    nums.iter().fold(0.0, |acc, n| acc + n)
-}
-
-pub fn sub(first: usize, second: usize) {
-    println!("{}", subtract(first, second));
-}
-
-fn subtract(first: usize, second: usize) -> usize {
+pub fn sub(first: f64, second: f64) -> f64 {
     first - second
 }
 
-pub fn mult(nums: &[i32]) {
-    println!("{}", multiply(nums));
+pub fn mult(nums: &[f64]) -> f64 {
+    nums.iter().fold(1.0, |acc, n| acc * n)
 }
 
-fn multiply(nums: &[i32]) -> i32 {
-    nums.iter().fold(1, |acc, n| acc * n)
-}
-
-pub fn div(dividend: usize, divisor: usize) {
-    println!("{}", divide(dividend, divisor));
-}
-
-fn divide(dividend: usize, divisor: usize) -> usize {
+pub fn div(dividend: f64, divisor: f64) -> f64 {
     dividend / divisor
 }
 
-pub fn exp(base: usize, exponent: usize) {
-    println!("{}", exponential(base, exponent));
+pub fn exp(base: f64, exponent: i32) -> f64 {
+    base.powi(exponent)
 }
 
-fn exponential(base: usize, exponent: usize) -> usize {
-    base.pow(exponent as u32)
-}
-
-pub fn prcnt(base: i32, percent: f64) {
-    println!("{}", percentage(base as f64, percent));
-}
-
-fn percentage(base: f64, percent: f64) -> f64 {
+pub fn percent(base: f64, percent: f64) -> f64 {
     base * (percent / 100.0)
 }

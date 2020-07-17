@@ -1,23 +1,17 @@
-pub fn square(num: f64) {
-    println!("{}", do_square(num));
+use crate::calculator::arithmetic;
+
+pub fn square(num: f64) -> f64 {
+    arithmetic::exp(num, 2)
 }
 
-fn do_square(num: f64) -> f64 {
-    num * num
+pub fn cube(num: f64) -> f64 {
+    arithmetic::exp(num, 3)
 }
 
-pub fn sqrt(num: f64) {
-    println!("{}", do_sqrt(num));
-}
-
-fn do_sqrt(num: f64) -> f64 {
+pub fn sqrt(num: f64) -> f64 {
     num.sqrt()
 }
 
-pub fn abs(num: f64) {
-    println!("{}", do_abs(num));
-}
-
-fn do_abs(num: f64) -> f64 {
+pub fn abs(num: f64) -> f64 {
     num.abs()
 }
