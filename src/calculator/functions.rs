@@ -20,12 +20,20 @@ pub fn cbrt(num: f64) -> f64 {
     num.cbrt()
 }
 
+pub fn root(num: f64, n: u32) -> f64 {
+    num.powf(1.0 / n as f64)
+}
+
 pub fn exp(num: f64) -> f64 {
     num.exp()
 }
 
 pub fn ln(num: f64) -> f64 {
     num.ln()
+}
+
+pub fn log(num: f64) -> f64 {
+    num.log10()
 }
 
 pub fn sin(num: f64) -> f64 {

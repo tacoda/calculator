@@ -9,135 +9,153 @@ use crate::calculator as calc;
 #[structopt(name = "calculator", about = "A simple command line calculator")]
 enum Calculator {
     #[structopt(name = "add")]
-    /// Add a list of at least two numbers
+    /// Add a list of numbers
     Add {
         #[structopt(required = true, min_values = 2)]
-        /// Numbers to add
+        /// Space-delimited list of numbers to add
         nums: Vec<f64>,
     },
     #[structopt(name = "sub")]
     /// Subtract two numbers
     Sub {
+        /// Number to subtract from
         first: f64,
+        /// Number to subtract
         second: f64,
     },
     #[structopt(name = "mult")]
-    /// Multiply a list of at least two numbers
+    /// Multiply a list of numbers
     Mult {
         #[structopt(required = true, min_values = 2)]
-        /// Numbers to multiply
+        /// Space-delimited list of numbers to multiply
         nums: Vec<f64>,
     },
     #[structopt(name = "div")]
     /// Divide two numbers
     Div {
+        /// Dividend (value to divide into)
         dividend: f64,
+        /// Divisor (value to divide by)
         divisor: f64,
     },
     #[structopt(name = "pow")]
     /// Find the power of a base and exponent
     Pow {
+        /// Base of the power
         base: f64,
+        /// Exponent of the power
         exponent: i32,
     },
     #[structopt(name = "percent")]
     /// Compute a percentage of a value
     Percent {
+        /// Base to compute the percentage from
         base: f64,
+        /// Percentage to calculate
         percent: f64,
     },
     #[structopt(name = "mean")]
     /// Find the mean of a list of numbers
     Mean {
         #[structopt(required = true, min_values = 2)]
-        /// Numbers to compute the mean of
+        /// Space-delimited list of numbers to compute the mean
         nums: Vec<f64>,
     },
     #[structopt(name = "median")]
     /// Find the median of a list of numbers
     Median {
         #[structopt(required = true, min_values = 2)]
-        /// Numbers to compute the median of
+        /// Space-delimited list of numbers to compute the median
         nums: Vec<i32>,
     },
     #[structopt(name = "mode")]
     /// Find the mode of a list of numbers
     Mode {
         #[structopt(required = true, min_values = 2)]
-        /// Numbers to compute the mode of
+        /// Space-delimited list of numbers to compute the mode
         nums: Vec<i32>,
     },
     #[structopt(name = "abs")]
     /// Find the absolute value of a number
     AbsoluteValue {
-        /// Number to compute the square of
+        /// Number to compute the absolute value
         num: f64,
     },
     #[structopt(name = "square")]
     /// Find the square of a number
     Square {
-        /// Number to compute the square of
+        /// Number to compute the square
         num: f64,
     },
     #[structopt(name = "sqrt")]
     /// Find the square root of a number
     SquareRoot {
-        /// Number to compute the square root of
+        /// Number to compute the square root
         num: f64,
     },
     #[structopt(name = "cube")]
     /// Find the cube of a number
     Cube {
-        /// Number to compute the cube of
+        /// Number to compute the cube
         num: f64,
     },
     #[structopt(name = "cbrt")]
     /// Find the cube root of a number
     CubeRoot {
-        /// Number to compute the cube root of
+        /// Number to compute the cube root
         num: f64,
+    },
+    #[structopt(name = "root")]
+    /// Find the nth root of a number
+    Root {
+        /// Number to compute the nth root
+        num: f64,
+        /// Number to use as n to compute the root
+        n: u32,
     },
     #[structopt(name = "exp")]
     /// Find the value of the exp function of a number
     Exp {
-        /// Number to compute the exp function of
+        /// Number to compute the exponential function
         num: f64,
     },
     #[structopt(name = "ln")]
     /// Find the natural logarithm of a number
     Ln {
-        /// Number to compute the natural logarithm of
+        /// Number to compute the natural logarithm
+        num: f64,
+    },
+    #[structopt(name = "log")]
+    /// Find the base 10 logarithm of a number
+    Log {
+        /// Number to compute the base 10 logarithm
         num: f64,
     },
     #[structopt(name = "sin")]
     /// Find the sine of a number
     Sin {
-        /// Number to compute the sine of (in radians)
+        /// Number to compute the sine (in radians)
         num: f64,
     },
     #[structopt(name = "cos")]
     /// Find the cosine of a number
     Cos {
-        /// Number to compute the cosine of (in radians)
+        /// Number to compute the cosine (in radians)
         num: f64,
     },
     #[structopt(name = "tan")]
     /// Find the tangent of a number
     Tan {
-        /// Number to compute the tangent of (in radians)
+        /// Number to compute the tangent (in radians)
         num: f64,
     },
     #[structopt(name = "fact")]
     /// Find the factorial of a number
     Fact {
-        /// Number to compute the factorial of
+        /// Number to compute the factorial
         num: u32,
     },
 }
-
-// Parens, AC, memory, swap sign, square, root, cube, cube root,
-// nth power, nth root, e exponent, ln, base 10 exponent, log(10),
-// factorial, sin, cos, tan, EE, rad/deg, pi, e, rand
 
 fn main() {
     let cli = Calculator::from_args();
@@ -160,8 +178,10 @@ fn main() {
         Calculator::SquareRoot { num } => { calc::functions::sqrt(num) },
         Calculator::Cube { num } => { calc::functions::cube(num) },
         Calculator::CubeRoot { num } => { calc::functions::cbrt(num) },
+        Calculator::Root { num, n } => { calc::functions::root(num, n) },
         Calculator::Exp { num } => { calc::functions::exp(num) },
         Calculator::Ln { num } => { calc::functions::ln(num) },
+        Calculator::Log { num } => { calc::functions::log(num) },
         Calculator::Sin { num } => { calc::functions::sin(num) },
         Calculator::Cos { num } => { calc::functions::cos(num) },
         Calculator::Tan { num } => { calc::functions::tan(num) },
